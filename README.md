@@ -1,6 +1,7 @@
 ### Brief
 
 - Wrapping of popular neural network libraries and providing a unified interface
+- User does not need to scale data
 - Brute force scanning of neural network configurations
 - Graphic evaluation of training history
 
@@ -13,7 +14,7 @@
     x = [[...], [...], ...]  # test input  (2D ArrayLike)
     
     phi = Black()
-    y = phi(X=X, Y=Y, x=x, backend='keras', neurons=[6,4], trainer='adam')
+    y = phi(X=X, Y=Y, x=x, backend='torch', neurons=[6,4], trainer='adam')
 
 ### Purpose
 
@@ -29,10 +30,10 @@ Moreover, selecting from multiple optimal network structures contributes to achi
 
 Therefore an automatic configuration of network parameters is being proposed. This covers 
 
-- variations of the number and size of hidden layers,
-- activation functions of hidden and output layers,
-- parameters of early stopping of the training or of deacy of weights,
-- the effect of random initialization of the network weights etc.   
+- variations of the number and size of hidden layers
+- activation functions of hidden and output layers
+- parameters of early stopping of the training or of deacy of weights
+- the effect of random initialization of the network weights etc   
 
 ### Options for finding the optimal configuration
 
@@ -65,7 +66,8 @@ _test_blackboxes_box.py_ is an example using synthetic data in 1D space with the
         N = 1000                    # number of training sets
         n = int(np.round(1.4 * N))  # number of test sets
         nse = 5e-2                  # noise
-        
+
+        # X and Y is training data, x is test input and y is prediction
         X = np.linspace(-2. * np.pi, 2. * np.pi, N).reshape(-1, 1)
         dx = 0.25 * (X.max() - X.min())
         x = np.linspace(X.min() - dx, X.max() + dx, n).reshape(-1, 1)
@@ -74,8 +76,9 @@ _test_blackboxes_box.py_ is an example using synthetic data in 1D space with the
         y_tru = np.sin(x)
 
         for backend in [
-            'tensorflow'  
             'neurolab',
+            'tensorflow'
+            'torch',
         ]:
             phi = Black()
         
