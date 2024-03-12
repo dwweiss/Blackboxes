@@ -1,12 +1,17 @@
 ### Brief
 
-- Wrapping of neural network libraries and providing a unified interface
+- Wrapping of popular neural network libraries and providing a unified interface
 - Brute force scanning of neural network configurations
-- Graphic presentation of training history
+- Graphic evaluation of training history
 
 ### Example
 
     from blackboxes.box import Black
+
+    X = [[...], [...], ...]  # train input
+    Y = [[...], [...], ...]  # target
+    x = [[...], [...], ...]  # test input
+    
     phi = Black()
     y = phi(X=X, Y=Y, x=x, backend='keras', neurons=[6,4], trainer='adam')
 
@@ -55,7 +60,7 @@ Functionality specific to each backend is implemented in child classes of the _B
 - Class _NeuralTch_: PyTorch variant
 
 ### Example: Sine curve
-_test_black_box.py_ is an example using synthetic data in 1D space with the backends TensorFlow, PyTorch, and NeuroLab.  
+_test_blackboxes_box.py_ is an example using synthetic data in 1D space with the backends TensorFlow, PyTorch, and NeuroLab.  
 
         N = 1000                    # number of training sets
         n = int(np.round(1.4 * N))  # number of test sets
