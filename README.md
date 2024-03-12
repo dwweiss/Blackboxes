@@ -8,18 +8,18 @@
 
     from blackboxes.box import Black
 
-    X = [[...], [...], ...]  # train input
-    Y = [[...], [...], ...]  # target
-    x = [[...], [...], ...]  # test input
+    X = [[...], [...], ...]  # train input (2D ArrayLike)
+    Y = [[...], [...], ...]  # target      (2D ArrayLike)
+    x = [[...], [...], ...]  # test input  (2D ArrayLike)
     
     phi = Black()
     y = phi(X=X, Y=Y, x=x, backend='keras', neurons=[6,4], trainer='adam')
 
 ### Purpose
 
-The _blackboxes_ Python package serves as a versatile wrapper for various implementations of neural networks, facilitating switching between different backends like _Keras_, _NeuroLab_, _PyTorch_, etc. This flexibility enables users to leverage the specific strengths of each backend, optimizing performance for diverse hardware configurations. By offering this interoperability, _blackboxes_ helps users avoid vendor lock-in and empowers them to harness the potential of the best neural network implementation for a given hardware.
+The _blackboxes_ Python package serves as a versatile wrapper for various implementations of neural networks, facilitating switching between different backends like _Keras_, _NeuroLab_, _PyTorch_, etc. This flexibility enables users to leverage the specific strengths of each backend, optimizing performance for diverse hardware configurations. By offering this interoperability, _blackboxes_ helps users avoid vendor lock-in and empowers them to harness the potential of the best neural network implementation for a given application.
 
-Additionally, _blackboxes_ specializes in finding optimal hyperparameters for neural networks. It employs brute force scanning to fine-tune model configurations. Moreover, _blackboxes_ exploits the effect of random initialization of neural networks, guaranteeing the discovery of optimal configurations.
+Additionally, _blackboxes_ specializes in finding optimal hyperparameters for neural networks. It employs brute force scanning to fine-tune model configurations. Moreover, _blackboxes_ exploits the effect of random initialization of neural networks, guaranteeing the discovery of (almost) optimal configurations.
 
 ### Motivation
 
@@ -72,15 +72,17 @@ _test_blackboxes_box.py_ is an example using synthetic data in 1D space with the
         Y_tru = np.sin(X)
         Y = Y_tru + np.random.uniform(-nse, +nse, size=X.shape)
         y_tru = np.sin(x)
-                
+
         for backend in [
-            NeuralTfl,  
-            # NeuralNlb,
+            'tensorflow'  
+            'neurolab',
         ]:
-            phi = backend()
+            phi = Black()
+        
             y = phi(X=X, Y=Y, x=x,
                 activation=('leaky', 'elu',) 
-                    if phi.backend == 'tensorflow' else 'sigmoid',
+                    if backend == 'tensorflow' else 'sigmoid',
+                backend=backend,
                 epochs=150,
                 expected=1e-3,
                 learning_rate=0.1,            # tensorflow learning rate
@@ -92,7 +94,7 @@ _test_blackboxes_box.py_ is an example using synthetic data in 1D space with the
                 rr=0.1,                 # bfgs regularization (neurolab)
                 show=1,
                 tolerated=5e-3,
-                trainer='adam' if phi.backend != 'neurolab' else 'bfgs',
+                trainer='adam' if backend != 'neurolab' else 'bfgs',
                 trials=5,   # repetition of every training configuration 
                 )
 
@@ -156,14 +158,7 @@ A single training session is risky, as indicated by the mean squared error (MSE)
 The required number of training repetitions is highly problem-specific in regression analysis of measurements. There are examples where a single training is sufficient, and examples where multiple random initializations of the network weights are definitely needed. Relying solely on a single training of a network configuration on a new dataset can pose a substantial risk of missing an acceptable solution. A preference for a particular optimizer or activation function for minimizing the MSE variation across multiple trials has not been identified. Therefore, brute force scanning of the network parameter space is recommended. The random initialization of weights should be repeated 3-5 times for each network configuration.
 
 
-### Installation
-
-#### Dependencies
+### Dependencies
 - Module _neuralnlb_ is dependent on package _neurolab_ [[NLB15]](https://github.com/dwweiss/grayboxes/wiki/References#nlb15)
-- Module _neuraltch_ is dependent on package _torch_ [[AAA24]](https://github.com/dwweiss/grayboxes/wiki/References#aaa24)
+- Module _neuraltch_ is dependent on package _torch_ [[PAS24]](https://github.com/dwweiss/grayboxes/wiki/References#pas24)
 - Module _neuraltfl_ is dependent on package _tensorflow_ [[ABA15]](https://github.com/dwweiss/grayboxes/wiki/References#aba15)
-
-#### Run test
-
-pip install blackboxes
-
