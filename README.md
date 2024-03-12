@@ -53,12 +53,7 @@ Class _BruteForce_ in module _bruteforce_ performes nested search loops over sel
 ###### Figure 1: Loops (MSE: mean squared error)
 
 The best configuration is chosen based on the mean squared error, as detailed in the module _metric_.
-_BruteForce_ uses different backends such as TensorFlow, PyTorch, NeuroLab etc. 
-
-Functionality specific to each backend is implemented in child classes of the _BruteForce_ class:
-- Class _NeuralNlb_: NeuroLab variant
-- Class _NeuralTfl_: Tensorflow/Keras variant
-- Class _NeuralTch_: PyTorch variant
+_BruteForce_ uses different backends such as NeuroLab, TensorFlow, PyTorch,  etc. 
 
 ### Example: Sine curve
 _test_blackboxes_box.py_ is an example using synthetic data in 1D space with the backends TensorFlow, PyTorch, and NeuroLab.  
