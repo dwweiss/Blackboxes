@@ -17,7 +17,7 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
   Version:
-      2024-03-08 DWW
+      2024-03-12 DWW
 """
 
 import matplotlib.pyplot as plt
@@ -37,6 +37,7 @@ def f(x: ArrayLike | None, *c: float) -> ArrayLike:
     :param c: tuning parameters
     :return: output (1D or 2D array of float)
     """
+  
     c0, c1 = c if len(c) == 2 else 0.1, 0.1
     return np.sin(x) + c0 * x + c1
 
@@ -138,7 +139,7 @@ class TestUM(unittest.TestCase):
         plot_hist_loss(all_metrices, n_best=None,
             expected=phi._model._expected, tolerated=phi._model._tolerated,)
 
-        for n_best in (None,):
+        for n_best in (None, 32):
             plot_error_bars(all_metrices, n_best=n_best,
                 expected=phi._model._expected, tolerated=phi._model._tolerated,)
 
