@@ -4,12 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "blackboxes"
-version = "03.24"
+version = "2024.0.0a1"
 authors = [
   { name="Dietmar Wilhelm Weiss", email="dietmar.wilhelm.weiss@gmail.com" },
 ]
+dependencies = ['numpy', 'matplotlib', 'scipy', 'neurolab', 'torch', 'keras']
+dynamic = ["version"]
 description = ""
 readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
