@@ -1,0 +1,6 @@
+scipy
+matplotlib
+neurolab
+numpy
+tensorflow
+torch
