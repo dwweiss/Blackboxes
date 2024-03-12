@@ -63,6 +63,9 @@ Functionality specific to each backend is implemented in child classes of the _B
 ### Example: Sine curve
 _test_blackboxes_box.py_ is an example using synthetic data in 1D space with the backends TensorFlow, PyTorch, and NeuroLab.  
 
+        import numpy as np
+        from blackboxes.box import Black
+
         N = 1000                    # number of training sets
         n = int(np.round(1.4 * N))  # number of test sets
         nse = 5e-2                  # noise
