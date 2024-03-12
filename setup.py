@@ -8,5 +8,5 @@ setup(
     license='',
     author='dww',
     author_email='',
-    description='Brute force training of neural networks'
+    description='Unified access to neural network libraries'
 )
