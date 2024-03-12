@@ -1,7 +1,7 @@
 ### Brief
 
 - Wrapping of popular neural network libraries and providing a unified interface
-- User does not need to scale data
+- Automatic scaling and descaling of data 
 - Brute force scanning of neural network configurations
 - Graphic evaluation of training history
 
