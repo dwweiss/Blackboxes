@@ -17,7 +17,7 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
   Version:
-      2024-03-05 DWW
+      2024-03-12 DWW
 """
 
 __all__ = ['BruteForce']
@@ -38,7 +38,7 @@ from blackboxes.tools import to_list, to_list_of_list
 class BruteForce(object):
     """
     - Encapsulation of implementation of empirical models
-    - Brute force configuration of model
+    - Brute force search of best model configuration
     - Graphic presentation of training history
 
     Example of training and prediction of neural network:
