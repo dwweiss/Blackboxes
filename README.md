@@ -1,7 +1,7 @@
 ### Brief
 
-- Encapsulation of neural network libraries
-- Brute force search of best model configuration
+- Wrapping of neural network libraries and providing a unified interface
+- Brute force scanning of neural network configurations
 - Graphic presentation of training history
 
 ### Example
@@ -12,7 +12,7 @@
 
 ### Purpose
 
-The _blackboxes_ Python package serves as a versatile wrapper for various implementations of neural networks, facilitating switching between different backends like _Keras_, _NeuroLab_, _PyTorch_, etc. This flexibility enables users to leverage the specific strengths of each backend, optimizing performance for diverse hardware configurations. By offering this interoperability, _blackboxes_ helps users avoid vendor lock-in and empowers them to harness the potential of their preferred neural network implementations.
+The _blackboxes_ Python package serves as a versatile wrapper for various implementations of neural networks, facilitating switching between different backends like _Keras_, _NeuroLab_, _PyTorch_, etc. This flexibility enables users to leverage the specific strengths of each backend, optimizing performance for diverse hardware configurations. By offering this interoperability, _blackboxes_ helps users avoid vendor lock-in and empowers them to harness the potential of the best neural network implementation for a given hardware.
 
 Additionally, _blackboxes_ specializes in finding optimal hyperparameters for neural networks. It employs brute force scanning to fine-tune model configurations. Moreover, _blackboxes_ exploits the effect of random initialization of neural networks, guaranteeing the discovery of optimal configurations.
 
@@ -42,7 +42,7 @@ This exhaustive search method relies solely on guessing wide parameter ranges an
 
 Class _BruteForce_ in module _bruteforce_ performes nested search loops over selected hyper parameter ranges. 
 
-![loops](https://github.com/dwweiss/blackboxes/blob/main/doc/fig/brute_force_loops.PNG)
+![loops](https://github.com/dwweiss/blackboxes/blob/main/doc/fig/bruteforce_loops.png)
 
 ###### Figure 1: Loops (MSE: mean squared error)
 
@@ -69,7 +69,8 @@ _test_black_box.py_ is an example using synthetic data in 1D space with the back
         y_tru = np.sin(x)
                 
         for backend in [
-            NeuralTfl,  # NeuralNlb,
+            NeuralTfl,  
+            # NeuralNlb,
         ]:
             phi = backend()
             y = phi(X=X, Y=Y, x=x,
