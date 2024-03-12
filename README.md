@@ -1,7 +1,6 @@
 ### Brief
 
 - Wrapping of popular neural network libraries and providing of unified interface
-- Automatic data scaling 
 - Brute force scanning of neural network configurations
 - Graphic evaluation of training history
 
