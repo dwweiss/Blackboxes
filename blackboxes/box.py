@@ -17,7 +17,7 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
   Version:
-      2024-03-08 DWW
+      2024-03-12 DWW
 """
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
