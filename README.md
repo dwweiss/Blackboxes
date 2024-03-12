@@ -12,11 +12,12 @@
 
 ### Purpose
 
-The _blackboxes_ Python package serves as a versatile wrapper for various implementations of neural networks, facilitating seamless switching between different backends like _Keras_, _NeuroLab_, _PyTorch_, etc. This flexibility enables users to leverage the specific strengths of each backend, optimizing performance for diverse hardware configurations. By offering this interoperability, _blackboxes_ helps users avoid vendor lock-in and empowers them to harness the full potential of their preferred neural network implementations.
+The _blackboxes_ Python package serves as a versatile wrapper for various implementations of neural networks, facilitating switching between different backends like _Keras_, _NeuroLab_, _PyTorch_, etc. This flexibility enables users to leverage the specific strengths of each backend, optimizing performance for diverse hardware configurations. By offering this interoperability, _blackboxes_ helps users avoid vendor lock-in and empowers them to harness the potential of their preferred neural network implementations.
 
-Additionally, _blackboxes_ specializes in finding optimal hyperparameters for neural networks. It employs brute force scanning to fine-tune model configurations. Moreover, unlike traditional approaches, _blackboxes_ exploits the effect of random initialization of neural networks, guaranteeing the discovery of optimal configurations.
+Additionally, _blackboxes_ specializes in finding optimal hyperparameters for neural networks. It employs brute force scanning to fine-tune model configurations. Moreover, _blackboxes_ exploits the effect of random initialization of neural networks, guaranteeing the discovery of optimal configurations.
 
 ### Motivation
+
 Optimal hyper parameters of neural networks can be difficult to estimate from theoretical considerations. It is mathematically proven that neural networks work effectively for most regression problems of higher complexity.
 However, algorithmic instructions for finding the optimal network configuration are often not available. 
 Moreover, selecting from multiple optimal network structures contributes to achieving sufficient model performance.
@@ -29,6 +30,7 @@ Therefore an automatic configuration of network parameters is being proposed. Th
 - the effect of random initialization of the network weights etc.   
 
 ### Options for finding the optimal configuration
+
 - Brute force scanning of hyper  parameter space (slow, but transparent) 
 - Automatic solutions such as Google’s AutoML (automatic regulariztion, but closed hood with the risk of insufficient model understanding)
 
@@ -37,6 +39,7 @@ Brute force scanning has been employed due to its explicit transparency and robu
 This exhaustive search method relies solely on guessing wide parameter ranges and eliminates the risk of the algorithm getting trapped in local optima.
 
 ### Implementation
+
 Class _BruteForce_ in module _bruteforce_ performes nested search loops over selected hyper parameter ranges. 
 
 ![loops](https://github.com/dwweiss/blackboxes/blob/main/doc/fig/brute_force_loops.PNG)
