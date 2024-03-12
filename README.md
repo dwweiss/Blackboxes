@@ -5,7 +5,7 @@
 - Brute force scanning of neural network configurations
 - Graphic evaluation of training history
 
-### Example
+### Code example
 
     from blackboxes.box import Black
 
