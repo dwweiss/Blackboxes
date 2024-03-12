@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "blackboxes"
 version = "03.24"
 authors = [
-  { name="dww", email="dietmar.wilhelm.weiss@gmail.com" },
+  { name="Dietmar Wilhelm Weiss", email="dietmar.wilhelm.weiss@gmail.com" },
 ]
 description = ""
 readme = "README.md"
